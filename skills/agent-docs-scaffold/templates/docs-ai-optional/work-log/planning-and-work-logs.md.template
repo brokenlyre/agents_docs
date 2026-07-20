@@ -1,0 +1,48 @@
+# Planning and Work Logs
+
+For nontrivial work — multi-session, multi-file, or multi-agent — create a
+work plan in `work/active/` before making changes, rather than relying on
+chat context that no other session or agent can see.
+
+## What a work plan contains
+
+- **Objective** — what the task is trying to achieve, in one or two
+  sentences.
+- **Scope** — what is included.
+- **Out of scope** — what is explicitly not included, to prevent scope
+  creep.
+- **Files expected to change** — a concrete list, kept up to date as work
+  proceeds.
+- **Assumptions** — working assumptions made, especially anything not
+  confirmed with a human.
+- **Risks** — what could go wrong.
+- **Validation plan** — how the work will be checked before being called
+  done (see [coding-standards.md](../coding-standards.md)).
+- **Progress checklist** — a running checklist updated as the task
+  proceeds.
+- **Decisions required** — anything that needs human input before the task
+  can be considered finished.
+- **Handoff notes** — state for whoever picks this up next, human or agent.
+
+A reusable starting structure lives at `work/templates/task-plan.md`.
+
+## Completion
+
+When a plan's work is complete:
+
+- **Archive to `work/archive/`** if the plan has durable value as a
+  historical record of what was done and why.
+- **Delete it** if it was purely a temporary working document with no
+  lasting value once the work is merged/complete.
+
+Do not leave stale plans sitting in `work/active/` — an active plan implies
+work is still in progress. If work stalls, either update the plan to
+reflect current status or move it out of `active/`.
+
+## Progress updates without log spam
+
+Provide progress updates during long-running tasks so a human can follow
+along, but do not fill the repository with conversational logs. A work
+plan's progress checklist and handoff notes are the durable record; a
+stream of chat-style status messages is not something that belongs
+committed to the repository.

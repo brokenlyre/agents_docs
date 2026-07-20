@@ -1,0 +1,30 @@
+# Coding Standards
+
+<!--
+The exact commands MUST come from package.json/pyproject.toml/Makefile/CI
+config — never guessed. If a check doesn't exist yet (no lint script, no
+CI), say so rather than inventing one.
+-->
+
+## Checks Before Considering Work Done
+
+| Check | Command |
+|---|---|
+| Lint | {{LINT_CMD}} |
+| Typecheck | {{TYPECHECK_CMD}} |
+| Test | {{TEST_CMD}} |
+| Build | {{BUILD_CMD}} |
+
+## Conventions
+
+{{CONVENTIONS}}
+
+## Gotchas
+
+<!--
+Library quirks, framework version surprises, things that bit someone
+before. Add entries as they're discovered; remove ones that stop applying
+rather than letting them accumulate as stale warnings.
+-->
+
+{{GOTCHAS}}

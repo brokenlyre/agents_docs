@@ -1,0 +1,32 @@
+# Architecture
+
+<!--
+Derive this from the actual repo: package manifest, folder structure,
+config files, deployment config (Dockerfile, vercel.json, CI workflows).
+Don't guess at a stack you haven't confirmed by reading a manifest or
+lockfile.
+-->
+
+## Stack
+
+{{STACK}}
+
+## Structure
+
+{{STRUCTURE}}
+
+## Major Components
+
+{{COMPONENTS}}
+
+## Data Flow
+
+{{DATA_FLOW}}
+
+## Integrations
+
+{{INTEGRATIONS}}
+
+## Deployment
+
+{{DEPLOYMENT}}

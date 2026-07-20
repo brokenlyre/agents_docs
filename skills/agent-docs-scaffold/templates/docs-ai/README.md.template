@@ -1,0 +1,68 @@
+# AI Knowledge Base
+
+This directory is {{PROJECT_NAME}}'s long-term, durable knowledge base for
+AI coding sessions. It exists so a fresh session — on any machine, with any
+agent — can understand the project's vision, architecture, standards, and
+history without re-discovering them from scratch or re-reading a chat
+transcript.
+
+`AGENTS.md`/`CLAUDE.md` at the repo root are intentionally kept short: they
+explain how to behave, and point here. Everything durable about *what the
+project is* lives in this directory.
+
+## Philosophy
+
+- **One home per fact.** Each piece of knowledge lives in exactly one file.
+  If you're about to write something that's already documented elsewhere,
+  update the existing entry instead of duplicating it.
+- **Update, don't recreate.** When you learn something new or something
+  changes, edit the relevant file directly. Don't add a new file for
+  something that fits an existing one.
+- **Read only what's relevant.** Don't load this entire directory for every
+  task — use the map below to find the one or two files that matter for
+  what you're doing.
+- **This is a knowledge base, not a changelog.** Keep entries concise,
+  current, and durable. `session-history.md` is the only file that
+  accumulates chronologically — everything else should reflect
+  present-tense truth.
+
+## What's Where
+
+| File | Contains | Update when... |
+|---|---|---|
+| [product-vision.md](product-vision.md) | Mission, target users, guiding principles, long-term vision | The product's purpose or target audience shifts |
+| [architecture.md](architecture.md) | Stack, app structure, major components, data flow, integrations, deployment | You add/change infrastructure, a major component, or the data model |
+| [coding-standards.md](coding-standards.md) | Concrete conventions and gotchas | You discover a new gotcha or an old one stops applying |
+| [roadmap.md](roadmap.md) | What's shipped, in progress, and next, in priority order | Work is started, finished, or reprioritized |
+| [decisions.md](decisions.md) | Significant decisions with reasons, alternatives, and tradeoffs | A non-obvious architectural or product choice is made |
+| [open-questions.md](open-questions.md) | Unresolved questions and assumptions — deliberately unanswered | A new open question arises, or an existing one gets resolved (move the answer to `decisions.md` and remove it here) |
+| [session-history.md](session-history.md) | Concise milestone log | Significant work completes |
+{{OPTIONAL_INDEX_ROWS}}
+
+Add further files (e.g. `design-principles.md`, `feature-backlog.md`,
+`glossary.md`) as this project's knowledge base grows — follow the same
+one-home-per-fact philosophy rather than letting facts spread across
+multiple files. Update this table whenever you add or remove one.
+
+{{WORK_LOG_SECTION}}
+
+## Auditing How This Knowledge Base Changed
+
+This directory does not keep its own changelog file — that would duplicate
+git history, which the philosophy above already tells you to avoid. Git
+history *is* the changelog:
+
+- How one doc evolved: `git log --follow -p -- docs/ai/<file>.md`
+- Everything that's happened to the knowledge base: `git log --oneline -- docs/ai/`
+
+Write commit messages for `docs/ai/` changes the same way you would for
+code — they're the only record of *when* and *why* a doc changed, since the
+docs themselves only hold present-tense truth.
+
+## Relationship to Local Memory
+
+Some AI tools (e.g. Claude Code's auto-memory) also persist information
+between sessions, but that memory is local to one machine/user and
+invisible to sessions running elsewhere (another machine, a teammate's
+agent, a cloud sandbox). Anything durable enough to matter across machines
+belongs here, in the repo, not only in local memory.

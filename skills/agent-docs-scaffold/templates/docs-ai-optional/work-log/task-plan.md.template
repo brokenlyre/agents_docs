@@ -1,0 +1,44 @@
+# {{TASK_TITLE}}
+
+- **Status:** active
+- **Started:** {{DATE}}
+
+## Objective
+
+{{OBJECTIVE}}
+
+## Scope
+
+{{SCOPE}}
+
+## Out of Scope
+
+{{OUT_OF_SCOPE}}
+
+## Files Expected to Change
+
+{{FILES}}
+
+## Assumptions
+
+{{ASSUMPTIONS}}
+
+## Risks
+
+{{RISKS}}
+
+## Validation Plan
+
+{{VALIDATION_PLAN}}
+
+## Progress Checklist
+
+- [ ] {{STEP}}
+
+## Decisions Required
+
+{{DECISIONS_REQUIRED}}
+
+## Handoff Notes
+
+{{HANDOFF_NOTES}}

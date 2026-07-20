@@ -1,0 +1,19 @@
+# Decisions
+
+<!--
+One entry per non-obvious architectural or product decision. Each entry:
+what was decided, why, what alternatives were considered and rejected, and
+the tradeoff accepted. Newest first. Don't log routine/obvious choices —
+this file is for decisions a future reader would otherwise have to
+reverse-engineer from a diff.
+-->
+
+## {{DECISION_TITLE}}
+
+**Decision:** {{DECISION}}
+
+**Why:** {{WHY}}
+
+**Alternatives considered:** {{ALTERNATIVES}}
+
+**Tradeoff accepted:** {{TRADEOFF}}

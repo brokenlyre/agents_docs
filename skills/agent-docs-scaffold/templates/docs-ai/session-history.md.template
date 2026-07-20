@@ -1,0 +1,12 @@
+# Session History
+
+<!--
+The one file in docs/ai/ that accumulates chronologically instead of
+staying present-tense. Add a short entry when significant work completes —
+not every session, not every commit. One or two lines: what shipped/changed
+and why it mattered. Newest entries at the top.
+-->
+
+## {{DATE}}
+
+{{SUMMARY}}

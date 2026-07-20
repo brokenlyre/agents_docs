@@ -1,0 +1,20 @@
+# Product Vision
+
+<!--
+Fill this from what the user tells you plus what's inferable from the repo
+(README, package.json description, marketing copy if any). Don't invent a
+mission — ask if it's genuinely not evident. Keep it short: this is the
+"why" other docs get judged against, not a pitch deck.
+-->
+
+## Mission
+
+{{MISSION}}
+
+## Target Users
+
+{{TARGET_USERS}}
+
+## Guiding Principles
+
+{{GUIDING_PRINCIPLES}}

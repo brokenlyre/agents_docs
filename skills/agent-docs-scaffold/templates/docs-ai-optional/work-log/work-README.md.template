@@ -1,0 +1,12 @@
+# Work Plans
+
+- `active/` — task plans currently in progress. See
+  [docs/ai/planning-and-work-logs.md](../docs/ai/planning-and-work-logs.md)
+  for what goes in one and when to create it.
+- `archive/` — completed task plans kept for historical record. Not every
+  completed plan is archived — only ones with durable value; otherwise
+  delete on completion.
+- `templates/task-plan.md` — starting structure for a new plan.
+
+Don't let `active/` accumulate stale plans — a plan sitting here implies
+work is still in progress.

@@ -1,0 +1,8 @@
+@AGENTS.md
+
+Everything a coding agent needs to know about how to behave in this repo
+lives in `AGENTS.md` (imported above) — that file is tool-agnostic on
+purpose, so Claude Code, Codex, and any other agent read the same operating
+guide. Don't add project-wide instructions here; add them to `AGENTS.md`
+instead. This file exists only to satisfy Claude Code's convention of
+loading `CLAUDE.md`.

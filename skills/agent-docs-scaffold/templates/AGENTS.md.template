@@ -1,0 +1,43 @@
+# {{PROJECT_NAME}} — AI Operating Guide
+
+This file explains how to behave in this repository. It is intentionally
+short and stable — it is not where project knowledge lives. It applies to
+any coding agent working in this repo (Claude Code, Codex, Cursor, or
+otherwise) — this is the file coding agents read by convention, so
+project-wide behavior belongs here, not duplicated per tool.
+
+**All long-term project knowledge — vision, architecture, standards,
+roadmap, decisions, open questions, and history — lives in
+[`docs/ai/`](docs/ai/README.md).** Start there. `docs/ai/README.md` indexes
+every document and maps common task types to the file that's relevant, so
+you don't need to read the whole directory for every task.
+
+## Workflow Expectations
+
+- Before starting non-trivial work, check `docs/ai/README.md` for the
+  doc(s) relevant to what you're touching.
+- When you learn or decide something durable — a new architectural
+  decision, a shipped feature, a corrected assumption, a newly scoped
+  feature — update the relevant file in `docs/ai/` directly, not just local
+  memory. Local memory (e.g. Claude Code's auto-memory) is per-machine and
+  invisible to other sessions, machines, or agents; `docs/ai/` is what keeps
+  everyone in sync.
+- Don't duplicate documentation. If something is already recorded in
+  `docs/ai/`, update it in place there — don't restate it here or in a new
+  file.
+- Make targeted edits only. Don't perform unrelated rewrites, renames, or
+  reformatting outside the scope of the current task, even if you notice
+  something worth improving — note it in `docs/ai/open-questions.md`
+  instead of acting on it unasked.
+- Before considering a change done, run this project's checks — see
+  `docs/ai/coding-standards.md` for the exact lint/typecheck/test/build
+  commands — and fix what they surface.
+- When a request is ambiguous or a decision has consequences beyond the
+  current task, stop and ask rather than guessing. If you proceed on an
+  assumption, record it in `docs/ai/open-questions.md`.
+- Never fabricate sources, test results, or completion status. If something
+  wasn't verified, say so.
+
+{{STACK_NOTES}}
+
+{{MULTI_AGENT_SECTION}}
