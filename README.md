@@ -12,57 +12,58 @@ for the full methodology.
 
 ## Install
 
-There are two install locations depending on who should get the skill:
+Run one command. It fetches the skill and asks where to put it — no need
+to clone the repo first.
 
-- **`~/.claude/skills/`** (personal, default) — makes it available in
-  *every* repo you open on this machine, for you only.
-- **`<your-repo>/.claude/skills/`** (project) — makes it available to
-  anyone who clones that specific repo, once the folder is committed.
-
-An install script handles copying the files to the right place — you don't
-need to clone the repo yourself first.
-
-**Personal install (macOS/Linux/WSL/Git Bash):**
+**macOS/Linux/WSL/Git Bash:**
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/brokenlyre/agents_docs/master/install.sh | bash
 ```
 
-**Personal install (Windows PowerShell):**
+**Windows PowerShell:**
 
 ```powershell
 irm https://raw.githubusercontent.com/brokenlyre/agents_docs/master/install.ps1 | iex
 ```
 
-**Project install** — pass the repo path so it lands in that project's
-`.claude/skills/` instead of your personal one. Since curl-into-`iex` can't
-take arguments, download the script first, then run it with a flag:
+It'll ask:
+
+```
+1) Personal — available in every repo on this machine (default)
+2) Project  — installed into one repo's .claude/skills, for you to commit and share
+```
+
+- **Personal** copies to `~/.claude/skills/` — the skill works in every
+  repo you open on this machine, for you only.
+- **Project** copies to `<path-you-give-it>/.claude/skills/` — only that
+  repo gets it, but it's then a normal tracked file: commit it and anyone
+  who clones the repo gets the skill too. The script prints the `git add`/
+  `commit` command to do that.
+
+For scripted/non-interactive use, skip the prompt with a flag:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/brokenlyre/agents_docs/master/install.sh -o /tmp/install.sh
-bash /tmp/install.sh --project /path/to/your-repo
+bash install.sh --personal
+bash install.sh --project /path/to/your-repo
 ```
-
 ```powershell
-irm https://raw.githubusercontent.com/brokenlyre/agents_docs/master/install.ps1 -OutFile $env:TEMP\install.ps1
-& $env:TEMP\install.ps1 -ProjectPath C:\path\to\your-repo
+.\install.ps1 -Personal
+.\install.ps1 -ProjectPath C:\path\to\your-repo
 ```
 
-The script prints a `git add`/`commit` reminder for project installs, since
-that's what actually shares it with teammates — the copy alone is just a
-local working-tree change.
+(Piped one-liners can't take flags — download the script first if you want
+non-interactive project install without cloning: `curl -fsSL .../install.sh
+-o install.sh && bash install.sh --project <path>`.)
 
 **If you'd rather clone first** (e.g. to inspect the skill before
-installing, or you're offline afterward), the same script works run
-locally — it'll use the cloned copy instead of re-fetching:
+installing, or you'll be offline afterward), the same script works run
+locally — it uses the cloned copy instead of re-fetching:
 
 ```sh
 git clone https://github.com/brokenlyre/agents_docs.git
 cd agents_docs
-./install.sh                      # personal install
-./install.ps1                     # personal install (Windows)
-./install.sh --project /path/to/your-repo
-./install.ps1 -ProjectPath C:\path\to\your-repo
+./install.sh          # or ./install.ps1 on Windows — same prompt
 ```
 
 **Verify it's picked up.** Open (or restart) a Claude Code session in the
