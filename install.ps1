@@ -1,17 +1,36 @@
 # Installs the agent-docs-scaffold skill into %USERPROFILE%\.claude\skills
-# (personal, default) or <project>\.claude\skills (with -ProjectPath <path>).
+# (personal) or <project>\.claude\skills (project-scoped).
+#
+# With no arguments and an interactive session, prompts for which. Pass
+# -ProjectPath <path> or -Personal to skip the prompt, e.g. for scripting.
 #
 # Works two ways:
 #   - Run locally after `git clone` (uses the skills\ folder next to this script)
 #   - Run via irm | iex with no local clone (shallow-clones to a temp dir)
 param(
-    [string]$ProjectPath
+    [string]$ProjectPath,
+    [switch]$Personal
 )
 
 $ErrorActionPreference = "Stop"
 
 $RepoUrl = "https://github.com/brokenlyre/agents_docs.git"
 $SkillName = "agent-docs-scaffold"
+
+if (-not $ProjectPath -and -not $Personal) {
+    if ([Environment]::UserInteractive -and -not [Console]::IsInputRedirected) {
+        Write-Host "Install agent-docs-scaffold:"
+        Write-Host "  1) Personal - available in every repo on this machine (default)"
+        Write-Host "  2) Project  - installed into one repo's .claude\skills, for you to commit and share"
+        $choice = Read-Host "Choose [1/2]"
+        if ($choice -eq "2") {
+            $ProjectPath = Read-Host "Project path"
+        }
+    } else {
+        Write-Host "No interactive session detected -- defaulting to personal install."
+        Write-Host "(Pass -ProjectPath <path> or -Personal to skip this in the future.)"
+    }
+}
 
 if ($ProjectPath) {
     $TargetDir = Join-Path $ProjectPath ".claude\skills"
