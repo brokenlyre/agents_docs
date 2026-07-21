@@ -14,56 +14,65 @@ for the full methodology.
 
 There are two install locations depending on who should get the skill:
 
-- **`~/.claude/skills/`** (personal) — makes it available in *every* repo
-  you open on this machine, for you only.
+- **`~/.claude/skills/`** (personal, default) — makes it available in
+  *every* repo you open on this machine, for you only.
 - **`<your-repo>/.claude/skills/`** (project) — makes it available to
   anyone who clones that specific repo, once the folder is committed.
 
-Either way, the steps are: clone this repo somewhere, then copy the
-`agent-docs-scaffold` folder into one of those two locations. Cloning
-itself doesn't install anything — Claude Code only looks inside
-`~/.claude/skills/` and `<repo>/.claude/skills/`, so the copy step is what
-actually matters.
+An install script handles copying the files to the right place — you don't
+need to clone the repo yourself first.
 
-**1. Clone this repo** (anywhere — it's just a source to copy from, e.g. next to your other repos):
+**Personal install (macOS/Linux/WSL/Git Bash):**
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/brokenlyre/agents_docs/master/install.sh | bash
+```
+
+**Personal install (Windows PowerShell):**
+
+```powershell
+irm https://raw.githubusercontent.com/brokenlyre/agents_docs/master/install.ps1 | iex
+```
+
+**Project install** — pass the repo path so it lands in that project's
+`.claude/skills/` instead of your personal one. Since curl-into-`iex` can't
+take arguments, download the script first, then run it with a flag:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/brokenlyre/agents_docs/master/install.sh -o /tmp/install.sh
+bash /tmp/install.sh --project /path/to/your-repo
+```
+
+```powershell
+irm https://raw.githubusercontent.com/brokenlyre/agents_docs/master/install.ps1 -OutFile $env:TEMP\install.ps1
+& $env:TEMP\install.ps1 -ProjectPath C:\path\to\your-repo
+```
+
+The script prints a `git add`/`commit` reminder for project installs, since
+that's what actually shares it with teammates — the copy alone is just a
+local working-tree change.
+
+**If you'd rather clone first** (e.g. to inspect the skill before
+installing, or you're offline afterward), the same script works run
+locally — it'll use the cloned copy instead of re-fetching:
 
 ```sh
 git clone https://github.com/brokenlyre/agents_docs.git
+cd agents_docs
+./install.sh                      # personal install
+./install.ps1                     # personal install (Windows)
+./install.sh --project /path/to/your-repo
+./install.ps1 -ProjectPath C:\path\to\your-repo
 ```
 
-**2a. Personal install** — available in every repo on this machine:
-
-macOS/Linux:
-```sh
-mkdir -p ~/.claude/skills
-cp -r agents_docs/skills/agent-docs-scaffold ~/.claude/skills/agent-docs-scaffold
-```
-
-Windows (PowerShell):
-```powershell
-New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\skills" | Out-Null
-Copy-Item -Recurse -Force agents_docs\skills\agent-docs-scaffold "$env:USERPROFILE\.claude\skills\agent-docs-scaffold"
-```
-
-**2b. Project install** — available to anyone who clones that repo, once you commit the copied folder:
-
-```sh
-mkdir -p /path/to/your-repo/.claude/skills
-cp -r agents_docs/skills/agent-docs-scaffold /path/to/your-repo/.claude/skills/agent-docs-scaffold
-cd /path/to/your-repo
-git add .claude/skills/agent-docs-scaffold
-git commit -m "Add agent-docs-scaffold skill"
-```
-
-**3. Verify it's picked up.** Open (or restart) a Claude Code session in
-the target repo and run `/agent-docs-scaffold` — if it's installed, Claude
-runs the skill; if not, you'll get an unrecognized-command response. You
-can also just ask Claude "what skills are available?" and check the name
+**Verify it's picked up.** Open (or restart) a Claude Code session in the
+target repo and run `/agent-docs-scaffold` — if it's installed, Claude runs
+the skill; if not, you'll get an unrecognized-command response. You can
+also just ask Claude "what skills are available?" and check the name
 appears in the list.
 
-**To update later:** pull the latest changes in your `agents_docs` clone
-(`git pull`), then re-run step 2a/2b to overwrite the installed copy —
-there's no separate updater.
+**To update later:** re-run the same install command — it always
+overwrites the installed copy with the latest version.
 
 ## Use
 
