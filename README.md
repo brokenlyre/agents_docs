@@ -12,24 +12,58 @@ for the full methodology.
 
 ## Install
 
-**Personal, all repos (recommended for your own machine):**
+There are two install locations depending on who should get the skill:
+
+- **`~/.claude/skills/`** (personal) — makes it available in *every* repo
+  you open on this machine, for you only.
+- **`<your-repo>/.claude/skills/`** (project) — makes it available to
+  anyone who clones that specific repo, once the folder is committed.
+
+Either way, the steps are: clone this repo somewhere, then copy the
+`agent-docs-scaffold` folder into one of those two locations. Cloning
+itself doesn't install anything — Claude Code only looks inside
+`~/.claude/skills/` and `<repo>/.claude/skills/`, so the copy step is what
+actually matters.
+
+**1. Clone this repo** (anywhere — it's just a source to copy from, e.g. next to your other repos):
 
 ```sh
-git clone <this-repo-url> agents_docs
+git clone https://github.com/brokenlyre/agents_docs.git
+```
+
+**2a. Personal install** — available in every repo on this machine:
+
+macOS/Linux:
+```sh
+mkdir -p ~/.claude/skills
 cp -r agents_docs/skills/agent-docs-scaffold ~/.claude/skills/agent-docs-scaffold
 ```
 
-**Project-scoped (to share with a team via git):**
-
-```sh
-cp -r agents_docs/skills/agent-docs-scaffold /path/to/your-repo/.claude/skills/agent-docs-scaffold
+Windows (PowerShell):
+```powershell
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\skills" | Out-Null
+Copy-Item -Recurse -Force agents_docs\skills\agent-docs-scaffold "$env:USERPROFILE\.claude\skills\agent-docs-scaffold"
 ```
 
-Commit the copied folder in the target repo so teammates' Claude Code
-sessions pick it up automatically.
+**2b. Project install** — available to anyone who clones that repo, once you commit the copied folder:
 
-**To update:** re-copy the `agent-docs-scaffold` folder over the existing
-one and re-install.
+```sh
+mkdir -p /path/to/your-repo/.claude/skills
+cp -r agents_docs/skills/agent-docs-scaffold /path/to/your-repo/.claude/skills/agent-docs-scaffold
+cd /path/to/your-repo
+git add .claude/skills/agent-docs-scaffold
+git commit -m "Add agent-docs-scaffold skill"
+```
+
+**3. Verify it's picked up.** Open (or restart) a Claude Code session in
+the target repo and run `/agent-docs-scaffold` — if it's installed, Claude
+runs the skill; if not, you'll get an unrecognized-command response. You
+can also just ask Claude "what skills are available?" and check the name
+appears in the list.
+
+**To update later:** pull the latest changes in your `agents_docs` clone
+(`git pull`), then re-run step 2a/2b to overwrite the installed copy —
+there's no separate updater.
 
 ## Use
 
